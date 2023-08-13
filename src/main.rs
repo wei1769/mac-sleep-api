@@ -1,6 +1,7 @@
 #[macro_use]
 extern crate rocket;
 use clap::Parser;
+use rocket::log::LogLevel;
 use rocket::response::content;
 use rocket::{get, http::Status};
 use std::process::Command;
@@ -15,6 +16,8 @@ pub struct Arguments {
     bind_address: Option<String>,
     #[arg(short, long, value_name = "port")]
     port: Option<u16>,
+    #[arg(short, long)]
+    verbose: bool,
 }
 
 #[launch]
@@ -30,7 +33,11 @@ async fn rocket() -> _ {
         port: args.port.unwrap_or(17698),
         address: addr,
         workers: 1,
-        log_level: rocket::log::LogLevel::Critical,
+        log_level: if args.verbose {
+            LogLevel::Off
+        } else {
+            LogLevel::Critical
+        },
         cli_colors: true,
         ..Config::release_default()
     };
