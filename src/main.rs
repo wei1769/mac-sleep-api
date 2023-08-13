@@ -77,12 +77,12 @@ async fn rocket() -> _ {
                     <key>ProgramArguments</key>
                     <array>
                             <string>{path}</string>
-                            <string>start</string>
+                            <string>-v</string>
                             <string>-b</string>
                             <string>{address}</string>
                             <string>-p</string>
                             <string>{port}</string>
-                            <string>-v</string>
+                            <string>start</string>
                     </array>
                     <key>WorkingDirectory</key>
                     <string>/Users/{username}/.msa</string>
@@ -108,8 +108,11 @@ async fn rocket() -> _ {
             </plist>
             "#,
             );
-            let file =
-                fs::write(format!("/Users/{username}/Library/LaunchAgents/mac.sleep.api.plist"), plist).unwrap();
+            let file = fs::write(
+                format!("/Users/{username}/Library/LaunchAgents/mac.sleep.api.plist"),
+                plist,
+            )
+            .unwrap();
             process::exit(0)
         }
     }
