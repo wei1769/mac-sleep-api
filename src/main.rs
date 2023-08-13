@@ -92,18 +92,6 @@ async fn rocket() -> _ {
                     <string>/Users/{username}/.msa/error</string>
                     <key>KeepAlive</key>
                     <true/>
-                    <key>Sockets</key>
-                    <dict>
-                        <key>Listeners</key>
-                        <dict>
-                            <key>SockServiceName</key>
-                            <string>{port}</string>
-                            <key>SockType</key>
-                            <string>stream</string>
-                            <key>SockFamily</key>
-                            <string>IPv4</string>
-                        </dict>
-                    </dict>
             </dict>
             </plist>
             "#,
