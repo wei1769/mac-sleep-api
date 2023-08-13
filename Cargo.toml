@@ -7,4 +7,6 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "4.3.21", features = ["derive"] }
+process_path = "0.1.4"
 rocket = { version = "0.5.0-rc.3", features = ["json"] }
+whoami = "1.4.1"
