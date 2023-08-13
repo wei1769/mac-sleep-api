@@ -1,13 +1,40 @@
 #[macro_use]
 extern crate rocket;
+use clap::Parser;
 use rocket::response::content;
 use rocket::{get, http::Status};
 use std::process::Command;
 use std::str::{self};
 mod cors;
+use rocket::config::Config;
+use std::str::FromStr;
+
+#[derive(Parser, Default, Debug)]
+pub struct Arguments {
+    #[arg(short, long, value_name = "address")]
+    bind_address: Option<String>,
+    #[arg(short, long, value_name = "port")]
+    port: Option<u16>,
+}
+
 #[launch]
 async fn rocket() -> _ {
-    rocket::build()
+    let args = Arguments::parse();
+    let addr = match args.bind_address {
+        Some(s) => std::net::IpAddr::from_str(&s),
+        None => std::net::IpAddr::from_str("0.0.0.0"),
+    }
+    .expect("bind address invalid");
+
+    let config = Config {
+        port: args.port.unwrap_or(17698),
+        address: addr,
+        workers: 1,
+        log_level: rocket::log::LogLevel::Critical,
+        cli_colors: true,
+        ..Config::release_default()
+    };
+    rocket::custom(config)
         .attach(cors::stage())
         .mount(
             "/",
