@@ -96,11 +96,11 @@ async fn rocket() -> _ {
             </plist>
             "#,
             );
-            let file = fs::write(
+            fs::write(
                 format!("/Users/{username}/Library/LaunchAgents/mac.sleep.api.plist"),
                 plist,
             )
-            .unwrap();
+            .expect("error adding to launch item");
             process::exit(0)
         }
     }
