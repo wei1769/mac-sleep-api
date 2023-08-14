@@ -22,7 +22,7 @@ $ mac-sleep-api start
 🚀 Rocket has launched from http://0.0.0.0:17698
 ```
 
-check http://localhost:17698/status to see if it works
+check <http://localhost:17698/status> to see if it works
 
 ## install as service
 
@@ -31,7 +31,7 @@ mac-sleep-api install
 ```
 
 logout and login again  
-See if it's working by going to http://localhost:17698/status
+See if it's working by going to <http://localhost:17698/status>
 
 ## cli options
 
