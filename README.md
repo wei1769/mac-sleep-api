@@ -1,5 +1,8 @@
 # Mac sleep http api
 
+An api that can put Mac's screen to sleep or wake up the display.  
+With status check support
+
 ## install
 
 install cargo, build binary from source
@@ -32,8 +35,17 @@ See if it's working by going to http://localhost:17698/status
 
 ## cli options
 
-```
+```bash
   -b, --bind-address <address>  [default: 0.0.0.0]
   -p, --port <port>             [default: 17698]
   -v, --verbose
+```
+
+## sleep, awake with curl
+
+```bash
+# turning on
+$ curl -X POST  localhost:17698/on
+# turning off
+$ curl -X POST  localhost:17698/off
 ```
