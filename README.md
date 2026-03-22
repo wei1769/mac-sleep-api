@@ -15,6 +15,14 @@ $ source "$HOME/.cargo/env"
 $ cargo install --git https://github.com/wei1769/mac-sleep-api.git
 ```
 
+## update
+
+```bash
+$ rustup update
+$ cargo install --git https://github.com/wei1769/mac-sleep-api.git
+$ killall mac-sleep-api
+```
+
 ## testing
 
 ```bash
